@@ -28,7 +28,7 @@ proc load_mdCATH {fn temperature replica} {
 
     animate delete all
     set cbin $tmpdir/loadmdcath.$pid.coords.bin
-    if {[catch {exec h5dump -b -o $cbin -d /$code/sims${temperature}K/$replica/coords $fn} result]} {
+    if {[catch {exec h5dump -b -o $cbin -d /$code/sims${temperature}/$replica/coords $fn} result]} {
         return -code error "Error dumping coords from $fn: $result"
     }
 
@@ -71,7 +71,7 @@ proc load_mdCATH {fn temperature replica} {
         $a update
     }
     $a delete
-    mol rename top "mdCATH: $code $temperatureK $replica"
+    mol rename top "mdCATH: $code $temperature $replica"
 
     # TODO set box
 }
